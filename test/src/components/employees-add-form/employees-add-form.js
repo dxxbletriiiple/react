@@ -5,26 +5,35 @@ class EmployeesAddForm extends Component {
 		super(props);
 		this.state = {
 			name: '',
-			salary: 0,
+			salary: '',
 		};
 	}
-	onValueChange = () => {};
+	onValueChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value,
+		});
+	};
 	render() {
+		const { name, salary } = this.state;
 		return (
 			<div className="app-add-form">
 				<h3>Добавьте нового сотрудника</h3>
 				<form className="add-form d-flex">
 					<input
 						type="text"
+						name="name"
 						className="form-control new-post-label"
 						placeholder="Как его зовут?"
-						onChange={this.onValueChange}
+						onChange={(e) => this.onValueChange(e)}
+						value={name}
 					/>
 					<input
 						type="number"
+						name="salary"
 						className="form-control new-post-label"
 						placeholder="З/П в $?"
-						onChange={this.onValueChange}
+						onChange={(e) => this.onValueChange(e)}
+						value={salary}
 					/>
 
 					<button type="submit" className="btn btn-outline-light">
