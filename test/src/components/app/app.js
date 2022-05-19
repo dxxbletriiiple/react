@@ -1,4 +1,5 @@
-import './app.css';
+import { Component } from 'react';
+
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
@@ -6,22 +7,71 @@ import EmployeesList from '../employees-list/employees-list';
 import EmployeesAddForm from '../employees-add-form/employees-add-form';
 // import EmployeesListItem from '../employees-list-item/employees-list-item';
 
-function App() {
-	const data = [
-		{ name: 'John C.', salary: 800 },
-		{ name: 'Alex M.', salary: 3000 },
-		{ name: 'Carl W.', salary: 5000 },
-	];
-	return (
-		<div className="app">
-			<AppInfo></AppInfo>
-			<div className="search-panel">
-				<SearchPanel />
-				<AppFilter />
+import './app.css';
+
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: [
+				{ name: 'John C.', salary: 800, id: 1 },
+				{ name: 'Alex M.', salary: 3000, id: 2 },
+				{ name: 'Carl W.', salary: 5000, id: 3 },
+			],
+		};
+		this.idCounter = 4;
+	}
+
+	deleteItem = (id) => {
+		this.setState(({ data }) => {
+			return { data: data.filter((item) => item.id !== id) };
+		});
+	};
+
+	addItem = (name, salary) => {
+		const newItem = {
+			name,
+			salary,
+			increase: false,
+			rise: false,
+			id: this.idCounter++,
+		};
+		this.setState(({ data }) => {
+			const newArr = [...data, newItem];
+			return {
+				data: newArr,
+			};
+		});
+	};
+	onToggleIncrease = (id) => {
+		this.setState(({ data }) => ({
+			data: data.map((item) =>
+				item.id === id ? { ...item, increase: !item.increase } : item,
+			),
+		}));
+	};
+	onToggleRise = (id) => {
+		this.setState(({ data }) => ({
+			data: data.map((item) => (item.id === id ? { ...item, rise: !item.rise } : item)),
+		}));
+	};
+	render() {
+		return (
+			<div className="app">
+				<AppInfo></AppInfo>
+				<div className="search-panel">
+					<SearchPanel />
+					<AppFilter />
+				</div>
+				<EmployeesList
+					data={this.state.data}
+					onDelete={this.deleteItem}
+					onToggleIncrease={this.onToggleIncrease}
+					onToggleRise={this.onToggleRise}
+				></EmployeesList>
+				<EmployeesAddForm onAdd={this.addItem} />
 			</div>
-			<EmployeesList data={data}></EmployeesList>
-			<EmployeesAddForm />
-		</div>
-	);
+		);
+	}
 }
 export default App;
