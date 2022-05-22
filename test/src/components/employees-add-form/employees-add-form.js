@@ -3,6 +3,8 @@ import { Component } from 'react';
 class EmployeesAddForm extends Component {
 	constructor(props) {
 		super(props);
+		this.olol = props;
+
 		this.state = {
 			name: '',
 			salary: '',

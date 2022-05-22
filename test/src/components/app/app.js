@@ -14,9 +14,9 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{ name: 'John C.', salary: 800, id: 1 },
-				{ name: 'Alex M.', salary: 3000, id: 2 },
-				{ name: 'Carl W.', salary: 5000, id: 3 },
+				{ name: 'John C.', salary: 800, id: 1, increase: false, rise: false },
+				{ name: 'Alex M.', salary: 3000, id: 2, increase: false, rise: false },
+				{ name: 'Carl W.', salary: 5000, id: 3, increase: false, rise: false },
 			],
 		};
 		this.idCounter = 4;
@@ -51,6 +51,7 @@ class App extends Component {
 	render() {
 		const employees = this.state.data.length;
 		const incrased = this.state.data.filter((item) => item.increase).length;
+
 		return (
 			<div className="app">
 				<AppInfo increased={incrased} employees={employees}></AppInfo>
