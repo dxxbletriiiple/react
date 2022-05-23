@@ -1,3 +1,5 @@
 my-app
 node_modules
 JS_task_answers
+.env
+test.*
