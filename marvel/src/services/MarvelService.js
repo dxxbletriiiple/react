@@ -3,7 +3,7 @@ require('dotenv').config();
 class MarvelService {
 	_apiBase = 'https://gateway.marvel.com:443/v1/public/';
 	// ЗДЕСЬ БУДЕТ ВАШ КЛЮЧ, ЭТОТ КЛЮЧ МОЖЕТ НЕ РАБОТАТЬ
-	_apiKey = 'apikey=ca0ef891c5f78c079adf43895a39ccc5';
+	_apiKey = 'apikey=ca0ef891c5f78c079adf43895a39ccc*5';
 
 	getResource = async (url) => {
 		let res = await fetch(url);
