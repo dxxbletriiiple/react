@@ -6,10 +6,6 @@ import mjolnir from '../../resources/img/mjolnir.png';
 import MarvelService from '../../services/MarvelService';
 
 class RandomChar extends Component {
-	constructor(props) {
-		super(props);
-		this.updChar();
-	}
 	state = {
 		char: {},
 		loading: true,
@@ -17,8 +13,23 @@ class RandomChar extends Component {
 	};
 	marvelService = new MarvelService();
 
+	componentDidMount() {
+		this.updChar();
+		// this.timerId = setInterval(this.updChar, 5000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerId);
+	}
+
 	onCharLoaded = (char) => {
 		this.setState({ char, loading: false });
+	};
+
+	onCharLoading = () => {
+		this.setState({
+			loading: true,
+		});
 	};
 
 	onError = () => {
@@ -29,8 +40,7 @@ class RandomChar extends Component {
 	};
 
 	updChar = () => {
-		// const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-		const id = 0;
+		const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
 		this.marvelService.getCharacter(id).then(this.onCharLoaded).catch(this.onError);
 	};
 	render() {
@@ -64,9 +74,12 @@ class RandomChar extends Component {
 
 const View = ({ char }) => {
 	const { name, description, thumbnail, homepage, wiki } = char;
+	let imgStyle = thumbnail.includes('image_not_available')
+		? { objectFit: 'contain' }
+		: { objectFit: 'cover' };
 	return (
 		<div className="randomchar__block">
-			<img src={thumbnail} alt={name} className="randomchar__img" />
+			<img src={thumbnail} alt={name} className="randomchar__img" style={imgStyle} />
 			<div className="randomchar__info">
 				<p className="randomchar__name">{name}</p>
 				<p className="randomchar__descr">{description}</p>
