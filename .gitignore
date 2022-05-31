@@ -3,3 +3,6 @@ node_modules
 JS_task_answers
 .env
 test.*
+.DS_Store
+.idea
+.vscode
