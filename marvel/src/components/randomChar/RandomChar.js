@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import './randomChar.scss';
-import mjolnir from '../../resources/img/mjolnir.png';
 import MarvelService from '../../services/MarvelService';
+import Spinner from '../spinner/Spinner';
+import mjolnir from '../../resources/img/mjolnir.png';
 
 class RandomChar extends Component {
 	constructor(props) {
@@ -10,6 +11,7 @@ class RandomChar extends Component {
 	}
 	state = {
 		char: {},
+		loading: true,
 	};
 	marvelService = new MarvelService();
 
@@ -24,8 +26,12 @@ class RandomChar extends Component {
 	render() {
 		const {
 			char: { name, description, thumbnail, homepage, wiki },
+			loading,
 		} = this.state;
-		return (
+
+		return loading ? (
+			<Spinner />
+		) : (
 			<div className="randomchar">
 				<div className="randomchar__block">
 					<img src={thumbnail} alt="Random character" className="randomchar__img" />
