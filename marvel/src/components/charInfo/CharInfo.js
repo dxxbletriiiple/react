@@ -93,6 +93,7 @@ const View = ({ char }) => {
 								{item.name}
 							</li>
 						);
+					// eslint-disable-next-line
 					return;
 				})}
 			</ul>

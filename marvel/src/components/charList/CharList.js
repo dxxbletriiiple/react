@@ -9,27 +9,42 @@ class CharList extends Component {
 		charList: [],
 		loading: true,
 		error: false,
+		itemsLoading: false,
+		offset: 210,
+		charEnded: false,
 	};
 
 	marvelService = new MarvelService();
 
 	componentDidMount() {
-		this.marvelService.getAllCharacters().then(this.onCharListLoaded).catch(this.onError);
+		this.onRequest();
 	}
 
-	onCharListLoaded = (charList) => {
-		this.setState({
-			charList,
+	onCharListLoaded = (newCharList) => {
+		this.setState(({ offset, charList }) => ({
+			charList: [...charList, ...newCharList],
 			loading: false,
-		});
+			itemsLoading: false,
+			offset: offset + 9,
+			charEnded: newCharList < 9,
+		}));
 	};
 
+	onCharListLoading = () => {
+		this.setState({ itemsLoading: true });
+	};
 	onError = () => {
 		this.setState({
 			error: true,
 			loading: false,
 		});
 	};
+
+	onRequest = (offset) => {
+		this.onCharListLoading();
+		this.marvelService.getAllCharacters(offset).then(this.onCharListLoaded).catch(this.onError);
+	};
+
 	renderItems(arr) {
 		const items = arr.map((item) => {
 			let imgStyle = item.thumbnail.includes('image_not_available')
@@ -51,7 +66,7 @@ class CharList extends Component {
 	}
 
 	render() {
-		const { charList, loading, error } = this.state;
+		const { charList, loading, error, itemsLoading, offset, charEnded } = this.state;
 
 		const items = this.renderItems(charList);
 
@@ -64,7 +79,12 @@ class CharList extends Component {
 				{errorMessage}
 				{spinner}
 				{content}
-				<button className="button button__main button__long">
+				<button
+					className="button button__main button__long"
+					disabled={itemsLoading}
+					onClick={() => this.onRequest(offset)}
+					style={{ display: charEnded ? 'none' : 'block' }}
+				>
 					<div className="inner">load more</div>
 				</button>
 			</div>

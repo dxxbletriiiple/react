@@ -2,6 +2,7 @@ require('dotenv').config();
 
 class MarvelService {
 	_apiBase = 'https://gateway.marvel.com:443/v1/public/';
+	_baseOffset = 210;
 	// ЗДЕСЬ БУДЕТ ВАШ КЛЮЧ, ЭТОТ КЛЮЧ МОЖЕТ НЕ РАБОТАТЬ
 	_apiKey = 'apikey=ca0ef891c5f78c079adf43895a39ccc5';
 
@@ -15,8 +16,10 @@ class MarvelService {
 		return await res.json();
 	};
 
-	getAllCharacters = async () => {
-		const res = await this.getResource(`${this._apiBase}characters?limit=9&${this._apiKey}`);
+	getAllCharacters = async (offset = this._baseOffset) => {
+		const res = await this.getResource(
+			`${this._apiBase}characters?limit=9&offset=${offset}&${this._apiKey}`,
+		);
 		return res.data.results.map(this._transformCharacter);
 	};
 
