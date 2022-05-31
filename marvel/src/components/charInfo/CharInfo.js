@@ -18,6 +18,10 @@ class CharInfo extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.charId !== prevProps.charId) this.updChar();
 	}
+	componentDidCatch(err, info) {
+		console.log(err, info);
+		this.setState({ error: true });
+	}
 
 	updChar = () => {
 		const { charId } = this.props;
