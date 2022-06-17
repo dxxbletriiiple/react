@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { MoviesList } from '../components/MoviesList';
 import { Search } from '../components/Search';
 import { Preloader } from '../components/Preloader';
-
 const API_KEY = '57e5d2a6';
 
 class Main extends Component {
@@ -41,7 +40,7 @@ class Main extends Component {
 		const { movies, loading } = this.state;
 
 		return (
-			<main className="container content">
+			<main className='container content'>
 				<Search searchMovies={this.searchMovies} />
 				{loading ? <Preloader /> : <MoviesList movies={movies} />}
 			</main>
