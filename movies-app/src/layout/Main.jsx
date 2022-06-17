@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { MoviesList } from '../components/MoviesList';
 import { Search } from '../components/Search';
 import { Preloader } from '../components/Preloader';
-const API_KEY = '57e5d2a6';
+const API_KEY = process.env.API_KEY;
 
 class Main extends Component {
 	state = {
