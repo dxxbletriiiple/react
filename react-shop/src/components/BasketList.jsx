@@ -19,7 +19,7 @@ function BasketList(props) {
 			{order.length ? (
 				order.map((item) => (
 					<BasketItem
-						key={item.id}
+						key={item.mainId}
 						removeFromBasket={removeFromBasket}
 						incQuantity={incQuantity}
 						decQuantity={decQuantity}

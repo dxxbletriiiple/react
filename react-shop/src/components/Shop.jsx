@@ -6,7 +6,6 @@ import { GoodsList } from './GoodsList';
 import { Cart } from './Cart';
 import { BasketList } from './BasketList';
 import { Alert } from './Alert';
-console.log(API_KEY);
 
 function Shop() {
 	const [goods, setGoods] = useState([]);
@@ -16,7 +15,7 @@ function Shop() {
 	const [alertName, setAlertName] = useState('');
 
 	const addToBasket = (item) => {
-		const itemIndex = order.findIndex((orderItem) => orderItem.id === item.id);
+		const itemIndex = order.findIndex((orderItem) => orderItem.mainId === item.mainId);
 
 		if (itemIndex < 0) {
 			const newItem = {
@@ -42,13 +41,13 @@ function Shop() {
 	};
 
 	const removeFromBasket = (itemId) => {
-		const newOrder = order.filter((el) => el.id !== itemId);
+		const newOrder = order.filter((el) => el.mainId !== itemId);
 		setOrder(newOrder);
 	};
 
 	const incQuantity = (itemId) => {
 		const newOrder = order.map((el) => {
-			if (el.id === itemId) {
+			if (el.mainId === itemId) {
 				const newQuantity = el.quantity + 1;
 				return {
 					...el,
@@ -62,7 +61,7 @@ function Shop() {
 	};
 	const decQuantity = (itemId) => {
 		const newOrder = order.map((el) => {
-			if (el.id === itemId) {
+			if (el.mainId === itemId) {
 				const newQuantity = el.quantity - 1;
 				return {
 					...el,
