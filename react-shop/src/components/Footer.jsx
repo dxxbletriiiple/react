@@ -11,7 +11,7 @@ export function Footer() {
 						rel='noreferrer'
 					>
 						Repo
-						<i className='fab fa-github'></i>
+						<i className='fab fa-github' style={{ marginLeft: '10px' }}></i>
 					</a>
 				</div>
 			</div>
