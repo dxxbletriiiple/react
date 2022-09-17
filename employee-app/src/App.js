@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const shop = [{ rise: 100 }, { luk: 321 }, { lol: 333 }];
+	const map = new Map();
+	const budget = [100, 12002, 303030];
+	shop.forEach((element, i) => {
+		map.set(element, budget[i]);
+	});
+	console.log(map);
+	return (
+		<>
+			<h1>lol</h1>
+		</>
+	);
 }
 
 export default App;
