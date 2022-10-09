@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { AppFilter } from '../app-filter/AppFilter';
 import './SearchPanel.scss';
 
 export class SearchPanel extends Component {
@@ -15,16 +14,13 @@ export class SearchPanel extends Component {
 	};
 	render() {
 		return (
-			<div className="search_panel">
-				<input
-					type="text"
-					className="form-control search-input"
-					placeholder="Найти сотрудника"
-					onChange={this.updTerm}
-					value={this.state.term}
-				/>
-				<AppFilter />
-			</div>
+			<input
+				type="text"
+				className="form-control search-input"
+				placeholder="Найти сотрудника"
+				onChange={this.updTerm}
+				value={this.state.term}
+			/>
 		);
 	}
 }
