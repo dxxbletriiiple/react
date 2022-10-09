@@ -73,17 +73,18 @@ export class App extends Component {
 		this.setState({ filter });
 	};
 	render() {
-		const { state, onUpdTerm, onSearch, deleteEmployee, onToggleData, addEmployee } = this;
+		const { state, onUpdTerm, onSearch, deleteEmployee, onToggleData, addEmployee, filterList, selectFilter } =
+			this;
 		const { list, term, filter } = state;
 		return (
 			<div className="App">
 				<AppInfo employeesCount={list.length} promoteCount={list.filter((i) => i.promotion).length} />
 				<div className="search_panel">
-					<SearchPanel onUpdTerm={onUpdTerm} filterList={this.filterList} />
-					<AppFilter filter={filter} selectFilter={this.selectFilter} />
+					<SearchPanel onUpdTerm={onUpdTerm} filterList={filterList} />
+					<AppFilter filter={filter} selectFilter={selectFilter} />
 				</div>
 				<EmployeesList
-					list={this.filterList(onSearch(list, term), filter)}
+					list={filterList(onSearch(list, term), filter)}
 					onDelete={deleteEmployee}
 					onToggleData={onToggleData}
 				/>
