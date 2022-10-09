@@ -4,6 +4,7 @@ export const AppFilter = ({ filter, selectFilter }) => {
 		{ name: 'all', text: 'Все сотрудники' },
 		{ name: 'increase', text: 'На повышение' },
 		{ name: 'overThousand', text: 'З/П больше 1000$' },
+		{ name: 'promotion', text: 'Премию получат' },
 	];
 	return (
 		<div className="btn-group">

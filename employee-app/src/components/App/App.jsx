@@ -11,7 +11,7 @@ export class App extends Component {
 	state = {
 		list: [
 			{ name: 'John Smith', salary: 400, increase: false, promotion: false, id: v4() },
-			{ name: 'Rick Sanchez', salary: 3000, increase: true, promotion: false, id: v4() },
+			{ name: 'Rick Sanchez', salary: 3000, increase: true, promotion: true, id: v4() },
 			{ name: 'Morty Smith', salary: 1000, increase: false, promotion: false, id: v4() },
 			{ name: 'Summer Smith', salary: 40000, increase: false, promotion: false, id: v4() },
 			{ name: 'Beth Smith', salary: 40000, increase: false, promotion: false, id: v4() },
@@ -65,6 +65,8 @@ export class App extends Component {
 				return list.filter((item) => item.increase);
 			case 'overThousand':
 				return list.filter((item) => item.salary >= 1000);
+			case 'promotion':
+				return list.filter((item) => item.promotion);
 			default:
 				return list;
 		}
