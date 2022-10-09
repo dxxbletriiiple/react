@@ -71,9 +71,11 @@ export class App extends Component {
 				return list;
 		}
 	};
+
 	selectFilter = (filter) => {
 		this.setState({ filter });
 	};
+
 	render() {
 		const { state, onUpdTerm, onSearch, deleteEmployee, onToggleData, addEmployee, filterList, selectFilter } =
 			this;
