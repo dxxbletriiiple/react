@@ -17,6 +17,7 @@ export class App extends Component {
 			{ name: 'Jerry Smith', salary: 40000, increase: false, promotion: false, id: v4() },
 			{ name: 'Michael Jackson', salary: 4_000_000, increase: false, promotion: false, id: v4() },
 		],
+		term: '',
 	};
 	deleteEmployee = (id) => {
 		this.setState(({ list }) => ({
@@ -44,15 +45,22 @@ export class App extends Component {
 			list: list.map((item) => (item.id === id ? { ...item, [keys]: !item[keys] } : item)),
 		}));
 	};
-
+	onSearch = (items, term) => {
+		if (items.length === 0) return items;
+		return items.filter((item) => item.name.indexOf(term) > -1);
+	};
+	onUpdTerm = (term) => {
+		this.setState({ term });
+	};
 	render() {
-		const { list } = this.state;
+		const { state, onUpdTerm, onSearch, deleteEmployee, onToggleData, addEmployee } = this;
+		const { list, term } = state;
 		return (
 			<div className="App">
-				<AppInfo />
-				<SearchPanel />
-				<EmployeesList list={list} onDelete={this.deleteEmployee} onToggleData={this.onToggleData} />
-				<EmployeesAddForm onAdd={this.addEmployee} />
+				<AppInfo employeesCount={list.length} promoteCount={list.filter((i) => i.promotion).length} />
+				<SearchPanel onUpdTerm={onUpdTerm} />
+				<EmployeesList list={onSearch(list, term)} onDelete={deleteEmployee} onToggleData={onToggleData} />
+				<EmployeesAddForm onAdd={addEmployee} />
 			</div>
 		);
 	}
