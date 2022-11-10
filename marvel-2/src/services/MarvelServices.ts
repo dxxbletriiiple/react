@@ -1,14 +1,35 @@
 /*  eslint-disable */
-type MarvelCharater {
-	name: string
-}
+type URLs = { type: string; url: string };
+
+type Comics = {
+	available: number;
+	collectionURI: string;
+	items: Array<{
+		name: string;
+		resourceURI: string;
+	}>;
+};
+
+type MarvelCharater = {
+	name: string;
+	description: string;
+	thumbnail?: string;
+	thumbnails?: { extension: string; path: string };
+	homepage: string;
+	wiki: string;
+	id: string | number;
+	comics2: Comics[];
+	comics: [];
+	urls: URLs[];
+};
+
 export class MarvelService {
 	_baseUrl: string = 'https://gateway.marvel.com/v1/public/';
 	_apiKey: string = `${process.env.REACT_APP_API_KEY}`;
 	_hash: string = `${process.env.REACT_APP_API_HASH}`;
 	_TS: string = `${process.env.REACT_APP_API_TS}`;
 
-	getResource = async (url: string):any => {
+	getResource = async (url: string) => {
 		let res: any = await fetch(url);
 
 		if (!res.ok) {
@@ -26,21 +47,30 @@ export class MarvelService {
 		const res: any = this.getResource(
 			`${this._baseUrl}characters${id}?apikey=${this._apiKey}&ts=${this._TS}&hash=${this._hash}`,
 		);
-		// const res = await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`);
-		return this._transformCharacter(res.data.results[0]);
+		// return this._transformCharacter(res.data.results[0]);
 	};
 
-	_transformCharacter = (char: object) => {
+	_transformCharacter = ({
+		name,
+		description,
+		thumbnail,
+		thumbnails,
+		urls,
+		id,
+		comics2,
+		wiki,
+	}: MarvelCharater) => {
 		return {
-			name: char.name,
-			description: char.description
-				? `${char.description.slice(0, 210)}...`
-				: `There is no description about ${char.name}`,
-			thumbnail: `${char.thumbnail.path}.${char.thumbnail.extension}`,
-			homepage: char.urls[0].url,
-			wiki: char.urls[1].url,
-			id: char.id,
-			comics: char.comics.items,
+			name,
+			description: description
+				? `${description.slice(0, 210)}...`
+				: `There is no description about ${name}`,
+			thumbnail: `${thumbnails?.path}.${thumbnails?.extension}`,
+			homepage: urls[0].url,
+			wiki: urls[1].url,
+			id: id,
+			comics: comics2.items,
+			urls: [],
 		};
 	};
 }

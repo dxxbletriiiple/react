@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
+import thor from '../../assets/img/thor.jpeg';
 
 export const CharInfo: FC = () => {
 	return (

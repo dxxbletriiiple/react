@@ -1,5 +1,9 @@
 @import '../../assets/variables.scss';
-
+button {
+	border: none;
+	background: none;
+	color: #fff;
+}
 .button {
 	min-width: 101px;
 	color: #fff;

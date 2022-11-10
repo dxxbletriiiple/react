@@ -1,10 +1,12 @@
-import { FC } from 'react';
-
+import { FC, useState, useEffect } from 'react';
+import { State } from '../../utils/types';
+import { Button } from '../Button/Button';
 import './randomChar.scss';
-import thor from '../../resources/img/thor.jpeg';
-import mjolnir from '../../resources/img/mjolnir.png';
+import thor from '../../assets/img/thor.jpeg';
+import mjolnir from '../../assets/img/mjolnir.png';
 
 export const RandomChar: FC = () => {
+	const [character, setCharacter] = useState<State>({ name: '' });
 	return (
 		<div className='randomchar'>
 			<div className='randomchar__block'>
@@ -19,10 +21,14 @@ export const RandomChar: FC = () => {
 					</p>
 					<div className='randomchar__btns'>
 						<a href='#!' className='button button__main'>
-							<div className='inner'>homepage</div>
+							<div className='inner'>
+								<Button text='homepage' />
+							</div>
 						</a>
 						<a href='#!' className='button button__secondary'>
-							<div className='inner'>Wiki</div>
+							<div className='inner'>
+								<Button text='Wiki' />
+							</div>
 						</a>
 					</div>
 				</div>

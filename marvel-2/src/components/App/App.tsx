@@ -4,8 +4,7 @@ import { RandomChar } from '../RandomChar/RandomChar';
 import { CharList } from '../CharList/CharList';
 import { CharInfo } from '../CharInfo/CharInfo';
 import { MarvelService } from '../../services/MarvelServices';
-import decoration from '../../resources/img/vision.png';
-import './App.scss';
+import decoration from '../../assets/img/vision.png';
 
 const ms = new MarvelService();
 ms.getAllResources().then((res: any) => console.log(res.data.results));
