@@ -1,37 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { MarvelService } from '../../services/MarvelServices';
 import { Button } from '../Button/Button';
-import './randomChar.scss';
-import thor from '../../assets/img/thor.jpeg';
+import { Error } from '../Error/Error';
+import { Spinner } from '../Spinner/Spinner.jsx';
 import mjolnir from '../../assets/img/mjolnir.png';
+import './randomChar.scss';
 
 export const RandomChar = () => {
-	const [character, setCharacter] = useState({ name: '' });
+	const [character, setCharacter] = useState({});
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
+	const ms = new MarvelService();
+
+	useEffect(() => {
+		updateChar();
+	}, []);
+	const onCharLoaded = (char) => {
+		setCharacter(char);
+		setLoading(false);
+	};
+	const updateChar = async () => {
+		setLoading(true);
+		const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+		ms.getCharacter(id)
+			.then(onCharLoaded)
+			.catch((err) => {
+				setError(true);
+				setLoading(false);
+				console.error(err);
+			});
+	};
+
 	return (
 		<div className='randomchar'>
-			<div className='randomchar__block'>
-				<img src={thor} alt='Random character' className='randomchar__img' />
-				<div className='randomchar__info'>
-					<p className='randomchar__name'>Thor</p>
-					<p className='randomchar__descr'>
-						As the Norse God of thunder and lightning, Thor wields one of the greatest
-						weapons ever made, the enchanted hammer Mjolnir. While others have described
-						Thor as an over-muscled, oafish imbecile, he's quite smart and
-						compassionate...
-					</p>
-					<div className='randomchar__btns'>
-						<a href='#!' className='button button__main'>
-							<div className='inner'>
-								<Button text='homepage' />
-							</div>
-						</a>
-						<a href='#!' className='button button__secondary'>
-							<div className='inner'>
-								<Button text='Wiki' />
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
+			{loading ? <Spinner /> : null}
+			{error ? <Error /> : null}
+			{!(loading || error) ? <View {...character} /> : null}
 			<div className='randomchar__static'>
 				<p className='randomchar__title'>
 					Random character for today!
@@ -39,10 +43,37 @@ export const RandomChar = () => {
 					Do you want to get to know him better?
 				</p>
 				<p className='randomchar__title'>Or choose another one</p>
-				<button className='button button__main'>
+				<button className='button button__main' onClick={updateChar}>
 					<div className='inner'>try it</div>
 				</button>
 				<img src={mjolnir} alt='mjolnir' className='randomchar__decoration' />
+			</div>
+		</div>
+	);
+};
+
+const View = ({ name, description, thumbnail, homepage, wiki }) => {
+	let imgStyle = thumbnail?.includes('image_not_available')
+		? { objectFit: 'contain' }
+		: { objectFit: 'cover' };
+	return (
+		<div className='randomchar__block'>
+			<img src={thumbnail} alt={name} className='randomchar__img' style={imgStyle} />
+			<div className='randomchar__info'>
+				<p className='randomchar__name'>{name}</p>
+				<p className='randomchar__descr'>{description}</p>
+				<div className='randomchar__btns'>
+					<a href={homepage} className='button button__main'>
+						<div className='inner'>
+							<Button text='homepage' />
+						</div>
+					</a>
+					<a href={wiki} className='button button__secondary'>
+						<div className='inner'>
+							<Button text='Wiki' />
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
 	);
