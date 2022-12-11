@@ -51,10 +51,12 @@ export const CharInfo = ({ id }) => {
 };
 
 const View = ({ id, name, thumbnail, description, homepage, wiki, comics }) => {
+	let imgStyle = thumbnail?.includes('image_not_available') ? { objectFit: 'contain' } : null;
+
 	return (
 		<>
 			<div className='char__basics'>
-				<img src={thumbnail} alt={name} />
+				<img src={thumbnail} alt={name} style={imgStyle} />
 				<div>
 					<div className='char__info-name'>{name}</div>
 					<div className='char__btns'>
@@ -70,11 +72,9 @@ const View = ({ id, name, thumbnail, description, homepage, wiki, comics }) => {
 			<div className='char__descr'>{description}</div>
 			<div className='char__comics'>Comics:</div>
 			<ul className='char__comics-list'>
-				{comics[0] ? (
-					comics?.map((el, i) => <CharComicsItem {...el} i={i} />)
-				) : (
-					<li className='char__comics-item'>There is no comics about {name}</li>
-				)}
+				{comics[0]
+					? comics?.map((el, i) => <CharComicsItem {...el} i={i} />)
+					: `There is no comics about ${name}`}
 			</ul>
 		</>
 	);
