@@ -1,46 +1,22 @@
+import { useState, useEffect } from 'react';
+import { MarvelService } from '../../services/MarvelServices';
+import { CharListItem } from '../CharListItem/CharListItem';
 import './charList.scss';
-import abyss from '../../assets/img/abyss.jpg';
 
-export const CharList = () => {
+export const CharList = ({ onCharSelected }) => {
+	const [list, setList] = useState([]);
+	const ms = new MarvelService();
+	useEffect(() => {
+		ms.getAllResources().then(setList);
+		// eslint-disable-next-line
+	}, []);
+
 	return (
 		<div className='char__list'>
 			<ul className='char__grid'>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item char__item_selected'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
-				<li className='char__item'>
-					<img src={abyss} alt='abyss' />
-					<div className='char__name'>Abyss</div>
-				</li>
+				{list.map((el) => (
+					<CharListItem {...el} onCharSelected={onCharSelected} />
+				))}
 			</ul>
 			<button className='button button__main button__long'>
 				<div className='inner'>load more</div>
