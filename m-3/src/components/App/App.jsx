@@ -3,6 +3,7 @@ import { AppHeader } from '../AppHeader/AppHeader';
 import { RandomChar } from '../RandomChar/RandomChar';
 import { CharList } from '../CharList/CharList';
 import { CharInfo } from '../CharInfo/CharInfo';
+import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 import decoration from '../../assets/img/vision.png';
 
 export const App = () => {
@@ -15,10 +16,14 @@ export const App = () => {
 		<div className='app'>
 			<AppHeader />
 			<main>
-				<RandomChar />
+				<ErrorBoundary>
+					<RandomChar />
+				</ErrorBoundary>
 				<div className='char__content'>
-					<CharList onCharSelected={onCharSelected} />
-					<CharInfo id={charID} />
+					<ErrorBoundary>
+						<CharList onCharSelected={onCharSelected} />
+						<CharInfo id={charID} />
+					</ErrorBoundary>
 				</div>
 				<img className='bg-decoration' src={decoration} alt='vision' />
 			</main>
