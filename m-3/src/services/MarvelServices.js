@@ -1,32 +1,26 @@
-export class MarvelService {
-	_baseUrl = `${process.env.REACT_APP_API_BASE}`;
-	_apiKey = `${process.env.REACT_APP_API_KEY}`;
-	_hash = `${process.env.REACT_APP_API_HASH}`;
-	_TS = `${process.env.REACT_APP_API_TS}`;
+import { useHttp } from '../hooks/http.hook';
 
-	getResource = async (url) => {
-		let res = await fetch(url);
+export const useMarvelService = () => {
+	const { loading, req, error, clearError } = useHttp();
+	const _baseUrl = `${process.env.REACT_APP_API_BASE}`;
+	const _apiKey = `${process.env.REACT_APP_API_KEY}`;
+	const _hash = `${process.env.REACT_APP_API_HASH}`;
+	const _TS = `${process.env.REACT_APP_API_TS}`;
 
-		if (!res.ok) {
-			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-		}
-		return await res.json();
-	};
-
-	getAllResources = async (offset = 0) => {
-		const res = await this.getResource(
-			`${this._baseUrl}characters?limit=9&offset=${offset}&apikey=${this._apiKey}&ts=${this._TS}&hash=${this._hash}`,
+	const getAllResources = async (offset = 0) => {
+		const res = await req(
+			`${_baseUrl}characters?limit=9&offset=${offset}&apikey=${_apiKey}&ts=${_TS}&hash=${_hash}`,
 		);
-		return res.data.results.map(this._transformCharacter);
+		return res.data.results.map(_transformCharacter);
 	};
-	getCharacter = async (id) => {
-		const res = await this.getResource(
-			`${this._baseUrl}characters/${id}?apikey=${this._apiKey}&ts=${this._TS}&hash=${this._hash}`,
+	const getCharacter = async (id) => {
+		const res = await req(
+			`${_baseUrl}characters/${id}?apikey=${_apiKey}&ts=${_TS}&hash=${_hash}`,
 		);
-		return this._transformCharacter(res.data.results[0]);
+		return _transformCharacter(res.data.results[0]);
 	};
 
-	_transformCharacter = ({ name, description, thumbnail, urls, id, comics }) => {
+	const _transformCharacter = ({ name, description, thumbnail, urls, id, comics }) => {
 		return {
 			id,
 			name,
@@ -39,4 +33,5 @@ export class MarvelService {
 			comics: comics.items,
 		};
 	};
-}
+	return { loading, error, getAllResources, getCharacter, clearError };
+};

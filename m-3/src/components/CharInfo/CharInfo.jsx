@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MarvelService } from '../../services/MarvelServices';
+import { useMarvelService } from '../../services/MarvelServices';
 import { CharComicsItem } from '../CharComicsItem/CharComicsItem';
 import { Skeleton } from '../Skeleton/Skeleton';
 import { Spinner } from '../Spinner/Spinner';
@@ -8,9 +8,7 @@ import './charInfo.scss';
 
 export const CharInfo = ({ id }) => {
 	const [char, setChar] = useState(null);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
-	const ms = new MarvelService();
+	const { loading, error, getCharacter } = useMarvelService();
 
 	useEffect(() => {
 		if (id === 0) return;
@@ -18,22 +16,8 @@ export const CharInfo = ({ id }) => {
 		// eslint-disable-next-line
 	}, [id]);
 
-	const onCharLoaded = (char) => {
-		setChar(char);
-		setLoading(false);
-		setError(false);
-	};
-
 	const updateChar = async () => {
-		setLoading(true);
-		// const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-		ms.getCharacter(id)
-			.then(onCharLoaded)
-			.catch((err) => {
-				setError(true);
-				setLoading(false);
-				console.error(err);
-			});
+		getCharacter(id).then(setChar);
 	};
 
 	const sk = char || loading || error ? null : <Skeleton />;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MarvelService } from '../../services/MarvelServices';
+import { useMarvelService } from '../../services/MarvelServices';
 import { Button } from '../Button/Button';
 import { Error } from '../Error/Error';
 import { Spinner } from '../Spinner/Spinner.jsx';
@@ -8,28 +8,17 @@ import './randomChar.scss';
 
 export const RandomChar = () => {
 	const [character, setCharacter] = useState({});
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
-	const ms = new MarvelService();
+	const { loading, error, getCharacter, clearError } = useMarvelService();
 
 	useEffect(() => {
 		updateChar();
 		// eslint-disable-next-line
 	}, []);
-	const onCharLoaded = (char) => {
-		setCharacter(char);
-		setLoading(false);
-	};
+
 	const updateChar = async () => {
-		setLoading(true);
+		clearError();
 		const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-		ms.getCharacter(id)
-			.then(onCharLoaded)
-			.catch((err) => {
-				setError(true);
-				setLoading(false);
-				console.error(err);
-			});
+		getCharacter(id).then(setCharacter);
 	};
 
 	return (
