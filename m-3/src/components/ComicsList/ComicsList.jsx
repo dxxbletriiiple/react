@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMarvelService } from '../../services/MarvelServices';
+import { AppBanner } from '../AppBanner/AppBanner';
 import { ComicsListItem } from '../ComicsListItem/ComicsListItem';
 import './comicsList.scss';
 
@@ -23,22 +24,25 @@ export const ComicsList = ({ onComicsSelected }) => {
 	};
 
 	return (
-		<div className='comics__list'>
-			<ul className='comics__grid'>
-				{list.map((el) => (
-					<ComicsListItem {...el} onCharSelected={onComicsSelected} />
-				))}
-			</ul>
-			<button className='button button__main button__long'>
-				<div
-					className='inner'
-					disabled={loading}
-					onClick={() => onRequest(offset)}
-					style={{ display: end ? 'none' : 'block' }}
-				>
-					load more
-				</div>
-			</button>
-		</div>
+		<>
+			<AppBanner />
+			<div className='comics__list'>
+				<ul className='comics__grid'>
+					{list.map((el) => (
+						<ComicsListItem {...el} onCharSelected={onComicsSelected} />
+					))}
+				</ul>
+				<button className='button button__main button__long'>
+					<div
+						className='inner'
+						disabled={loading}
+						onClick={() => onRequest(offset)}
+						style={{ display: end ? 'none' : 'block' }}
+					>
+						load more
+					</div>
+				</button>
+			</div>
+		</>
 	);
 };
