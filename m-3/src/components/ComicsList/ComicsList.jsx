@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMarvelService } from '../../services/MarvelServices';
-import { AppBanner } from '../AppBanner/AppBanner';
+
 import { ComicsListItem } from '../ComicsListItem/ComicsListItem';
 import './comicsList.scss';
 
@@ -25,7 +25,6 @@ export const ComicsList = ({ onComicsSelected }) => {
 
 	return (
 		<>
-			<AppBanner />
 			<div className='comics__list'>
 				<ul className='comics__grid'>
 					{list.map((el) => (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AppHeader } from '../AppHeader/AppHeader';
+import { AppBanner } from '../AppBanner/AppBanner';
 import { RandomChar } from '../RandomChar/RandomChar';
 import { CharList } from '../CharList/CharList';
 import { CharInfo } from '../CharInfo/CharInfo';
@@ -16,6 +17,7 @@ export const App = () => {
 	return (
 		<div className='app'>
 			<AppHeader />
+			<AppBanner />
 			{/* <main>
 				<ErrorBoundary>
 					<RandomChar />
