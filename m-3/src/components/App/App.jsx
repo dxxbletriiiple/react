@@ -4,6 +4,7 @@ import { RandomChar } from '../RandomChar/RandomChar';
 import { CharList } from '../CharList/CharList';
 import { CharInfo } from '../CharInfo/CharInfo';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
+import { ComicsList } from '../ComicsList/ComicsList';
 import decoration from '../../assets/img/vision.png';
 
 export const App = () => {
@@ -15,7 +16,7 @@ export const App = () => {
 	return (
 		<div className='app'>
 			<AppHeader />
-			<main>
+			{/* <main>
 				<ErrorBoundary>
 					<RandomChar />
 				</ErrorBoundary>
@@ -26,7 +27,8 @@ export const App = () => {
 					</ErrorBoundary>
 				</div>
 				<img className='bg-decoration' src={decoration} alt='vision' />
-			</main>
+			</main> */}
+			<ComicsList />
 		</div>
 	);
 };
