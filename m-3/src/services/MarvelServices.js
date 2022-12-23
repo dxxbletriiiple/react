@@ -28,7 +28,6 @@ export const useMarvelService = () => {
 		const res = await req(
 			`${_baseUrl}comics?orderBy=issueNumber&limit=8&offset=${offset}&apikey=${_apiKey}&ts=${_TS}&hash=${_hash}`,
 		);
-		console.log(res);
 		return res.data.results.map(_transformComics);
 	};
 	const _transformCharacter = ({ name, description, thumbnail, urls, id, comics }) => {
