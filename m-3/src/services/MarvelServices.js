@@ -21,7 +21,7 @@ export const useMarvelService = () => {
 	};
 
 	const getComics = async (id) => {
-		const res = await req(`${_baseUrl}comics/${id}?$apikey={_apiKey}&ts=${_TS}&hash=${_hash}`);
+		const res = await req(`${_baseUrl}comics/${id}?apikey=${_apiKey}&ts=${_TS}&hash=${_hash}`);
 		return _transformComics(res.data.results[0]);
 	};
 	const getAllComics = async (offset = 0) => {
