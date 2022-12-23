@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MainPage, ComicsPage, Page404 } from '../pages';
-import { SingleComic } from '../SingleComic/SingleComic';
+import { MainPage, ComicsPage, SingleComic, Page404 } from '../pages';
 import { AppHeader } from '../AppHeader/AppHeader';
 
 export const App = () => {
