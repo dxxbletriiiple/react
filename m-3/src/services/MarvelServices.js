@@ -20,7 +20,7 @@ export const useMarvelService = () => {
 		return _transformCharacter(res.data.results[0]);
 	};
 
-	const getComics = async (id) => {
+	const getComic = async (id) => {
 		const res = await req(`${_baseUrl}comics/${id}?apikey=${_apiKey}&ts=${_TS}&hash=${_hash}`);
 		return _transformComics(res.data.results[0]);
 	};
@@ -57,5 +57,5 @@ export const useMarvelService = () => {
 			price: comics.prices[0].price ? `${comics.prices[0].price}$` : 'not available',
 		};
 	};
-	return { loading, error, getAllResources, getCharacter, getAllComics, getComics, clearError };
+	return { loading, error, getAllResources, getCharacter, getAllComics, getComic, clearError };
 };
