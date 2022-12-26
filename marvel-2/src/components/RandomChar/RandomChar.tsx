@@ -5,8 +5,8 @@ import './randomChar.scss';
 import thor from '../../assets/img/thor.jpeg';
 import mjolnir from '../../assets/img/mjolnir.png';
 
-export const RandomChar: FC = () => {
-	const [character, setCharacter] = useState<State>({ name: '' });
+export const RandomChar = () => {
+	const [character, setCharacter] = useState({ name: '' });
 	return (
 		<div className='randomchar'>
 			<div className='randomchar__block'>

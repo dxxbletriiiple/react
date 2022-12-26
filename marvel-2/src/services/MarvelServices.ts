@@ -24,7 +24,7 @@ type MarvelCharater = {
 };
 
 export class MarvelService {
-	_baseUrl: string = 'https://gateway.marvel.com/v1/public/';
+	_baseUrl: string = `${process.env.REACT_APP_API_BASE}`;
 	_apiKey: string = `${process.env.REACT_APP_API_KEY}`;
 	_hash: string = `${process.env.REACT_APP_API_HASH}`;
 	_TS: string = `${process.env.REACT_APP_API_TS}`;
@@ -38,6 +38,7 @@ export class MarvelService {
 
 		return await res.json();
 	};
+
 	getAllResources = () => {
 		return this.getResource(
 			`${this._baseUrl}characters?apikey=${this._apiKey}&ts=${this._TS}&hash=${this._hash}`,
@@ -50,6 +51,7 @@ export class MarvelService {
 		// return this._transformCharacter(res.data.results[0]);
 	};
 
+	/*
 	_transformCharacter = ({
 		name,
 		description,
@@ -72,5 +74,5 @@ export class MarvelService {
 			comics: comics2.items,
 			urls: [],
 		};
-	};
+	};*/
 }
