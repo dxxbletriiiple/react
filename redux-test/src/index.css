@@ -4,6 +4,7 @@ body {
 		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #1d1d1d;
 }
 
 .container {
@@ -12,6 +13,7 @@ body {
 }
 .container h1 {
 	text-align: center;
+	color: #fff;
 }
 .container button {
 	margin-left: 15px;

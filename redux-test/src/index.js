@@ -1,39 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createStore } from 'redux';
+import { createStore, bindActionCreators } from 'redux';
+import * as actions from './actions';
+import { reducer } from './reducer';
 import './index.css';
-import { configureStore } from '@reduxjs/toolkit';
-
-const initialState = 0;
-
-console.dir(createStore);
-
-const reducer = (state = 0, action) => {
-	switch (action.type) {
-		case 'INC':
-			return ++state;
-		case 'DEC':
-			return --state;
-		case 'RND':
-			return state * action.payload;
-		default:
-			return state;
-	}
-};
+// import { configureStore } from '@reduxjs/toolkit';
+const state = document.querySelector('h1');
+const incBtn = document.querySelector('#inc');
+const decBtn = document.querySelector('#dec');
+const rndBtn = document.querySelector('#rnd');
 
 const store = createStore(reducer);
+const { dispatch, subscribe, getState } = store;
+const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
 
-document.querySelector('#inc').addEventListener('click', () => store.dispatch({ type: 'INC' }));
-document.querySelector('#dec').addEventListener('click', () => store.dispatch({ type: 'DEC' }));
-document
-	.querySelector('#rnd')
-	.addEventListener('click', () =>
-		store.dispatch({ type: 'RND', payload: Math.floor(Math.random()) }),
-	);
+incBtn.addEventListener('click', () => inc());
+decBtn.addEventListener('click', () => dec());
+rndBtn.addEventListener('click', () => rnd(Math.floor(Math.random() * 10)));
 
-store.subscribe(() => {
-	document.querySelector('h1').textContent = store.getState();
+subscribe(() => {
+	state.textContent = getState().value;
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<React.StrictMode></React.StrictMode>);
+ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode></React.StrictMode>);
