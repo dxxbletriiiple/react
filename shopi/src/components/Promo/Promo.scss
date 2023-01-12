@@ -86,9 +86,9 @@
 		width: 6px;
 		height: 6px;
 		border: 1px solid var(--main);
+		transform: rotate(45deg);
 		&.active {
 			background: var(--main);
 		}
-		transform: rotate(45deg);
 	}
 }

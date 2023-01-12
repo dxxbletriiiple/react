@@ -1,6 +1,7 @@
 // import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { PromoList } from '../Promo/PromoList';
+import { NewArrivalsList } from '../NewArrivalsList/NewArrivalsList';
 import './App.scss';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
 		<div className='app'>
 			<Header />
 			<PromoList />
+			<NewArrivalsList />
 		</div>
 	);
 }

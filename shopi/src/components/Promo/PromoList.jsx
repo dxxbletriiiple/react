@@ -27,7 +27,7 @@ export const PromoList = () => {
 				<PromoBtn />
 			</div>
 			<div className='dots'>
-				<span className='dot'></span>
+				<span className='dot active'></span>
 				<span className='dot'></span>
 				<span className='dot'></span>
 			</div>

@@ -1,0 +1,80 @@
+@import '../../styles/variables.scss';
+
+.new_arrivals {
+	padding: 8px 16px 16px;
+	width: 100vw;
+	height: 736px;
+	&_header {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 40px;
+		text-align: center;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+		color: var(--black);
+	}
+	&_list {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		gap: 13px 12px;
+		width: 100%;
+	}
+	nav ul {
+		list-style: none;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		height: 36px;
+	}
+	nav a {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 106%;
+		text-align: center;
+		letter-spacing: 1px;
+		color: var(--grey);
+		opacity: 0.8;
+		text-decoration: none;
+		position: relative;
+		&.active::after {
+			position: absolute;
+			content: '';
+			display: block;
+			width: 6px;
+			height: 6px;
+			left: 50%;
+			transform: rotate(45deg) translate(1px, 3px);
+			background: var(--secondary);
+		}
+	}
+	&_explore {
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		width: 155px;
+		height: 48px;
+		margin: 0 auto;
+		a {
+			font-style: normal;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 24px;
+			text-decoration: none;
+			color: var(--black);
+			position: relative;
+			&::after {
+				background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.2827 5L20.9998 12L14.2827 19' stroke='%2314142B'/%3E%3Cline x1='20.6279' y1='12.1089' x2='2.89487' y2='12.1089' stroke='%2314142B'/%3E%3C/svg%3E%0A")
+					center center / cover no-repeat;
+				content: '';
+				display: block;
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				top: 50%;
+				right: -23px;
+				transform: translate(0, -50%);
+			}
+		}
+	}
+}
