@@ -2,6 +2,7 @@
 import { Header } from '../Header/Header';
 import { PromoList } from '../Promo/PromoList';
 import { NewArrivalsList } from '../NewArrivalsList/NewArrivalsList';
+import { Brands } from '../Brands/Brands';
 import './App.scss';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 			<Header />
 			<PromoList />
 			<NewArrivalsList />
+			<Brands />
 		</div>
 	);
 }
