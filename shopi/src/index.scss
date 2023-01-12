@@ -1,10 +1,14 @@
+@import './styles/variables.scss';
 *,
 *::after,
 *::before {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Tenor Sans', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+
 body {
 	margin: 0;
 	padding: 0;
@@ -12,6 +16,9 @@ body {
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	scroll-behavior: smooth;
+	background: var(--main);
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
-
-@import './styles/variables.scss';
