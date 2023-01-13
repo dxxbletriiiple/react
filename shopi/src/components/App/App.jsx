@@ -4,6 +4,7 @@ import { PromoList } from '../Promo/PromoList';
 import { NewArrivalsList } from '../NewArrivalsList/NewArrivalsList';
 import { Brands } from '../Brands/Brands';
 import './App.scss';
+import { Collections } from '../Collections/Collections';
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 			<PromoList />
 			<NewArrivalsList />
 			<Brands />
+			<Collections />
 		</div>
 	);
 }
