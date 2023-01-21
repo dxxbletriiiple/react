@@ -5,7 +5,7 @@ import './Collections.scss';
 export const Collections = () => {
 	return (
 		<div className='collections'>
-			<h2 className='collections_header'>Collections</h2>
+			<h2 className='collections_header headers'>Collections</h2>
 			<div className='content'>
 				<img className='october' src={img1} alt='october' />
 				<img className='autumn' src={img2} alt='autumn' />

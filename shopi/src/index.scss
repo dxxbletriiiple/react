@@ -30,3 +30,13 @@ body {
 	height: 10px;
 	margin: 0 auto;
 }
+
+h2.headers {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 40px;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	color: var(--black);
+	text-align: center;
+}

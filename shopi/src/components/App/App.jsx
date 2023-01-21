@@ -3,8 +3,9 @@ import { Header } from '../Header/Header';
 import { PromoList } from '../Promo/PromoList';
 import { NewArrivalsList } from '../NewArrivalsList/NewArrivalsList';
 import { Brands } from '../Brands/Brands';
-import './App.scss';
 import { Collections } from '../Collections/Collections';
+import { JustForYou } from '../JustForYou/JustForYou';
+import './App.scss';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 			<NewArrivalsList />
 			<Brands />
 			<Collections />
+			<JustForYou />
 		</div>
 	);
 }

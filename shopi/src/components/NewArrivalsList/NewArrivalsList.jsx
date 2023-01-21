@@ -4,7 +4,7 @@ import './NewArrivalsList.scss';
 export const NewArrivalsList = ({ arrivalsList }) => {
 	return (
 		<div className='new_arrivals'>
-			<h2 className='new_arrivals_header'>New Arrival</h2>
+			<h2 className='new_arrivals_header headers'>New Arrival</h2>
 			<div className='devider'></div>
 			<nav>
 				<ul>
