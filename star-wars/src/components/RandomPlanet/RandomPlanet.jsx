@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import SwapiService from '../../services/SwapiServise';
+import SwapiService from '../../services/SwapiService';
 import { Spinner } from '../Spinner/Spinner';
 import { ErrorIndicator } from '../ErrorIndicator/ErrorIndicator';
 import './RandomPlanet.scss';

@@ -1,11 +1,23 @@
+import { useEffect, useState } from 'react';
+import SwapiSevice from '../../services/SwapiService';
+import { Spinner } from '../Spinner/Spinner';
 import './ItemList.scss';
 
 export const ItemList = () => {
+	const [peopleList, setPeopleList] = useState(null);
+	const sp = new SwapiSevice();
+
+	useEffect(() => {
+		sp.getAllPeople().then(setPeopleList);
+	}, []);
+
 	return (
 		<ul className='item-list list-group'>
-			<li className='list-group-item'>Luke Skywalker</li>
-			<li className='list-group-item'>Darth Vader</li>
-			<li className='list-group-item'>R2-D2</li>
+			{peopleList ? peopleList.map((i) => <View name={i.name} />) : <Spinner />}
 		</ul>
 	);
+};
+
+const View = ({ name, id }) => {
+	return <li className='list-group-item'>{name}</li>;
 };

@@ -3,8 +3,12 @@ import { RandomPlanet } from '../RandomPlanet/RandomPlanet';
 import { ItemList } from '../ItemList/ItemList';
 import { PersonDetails } from '../PersonDetails/PersonDetails';
 import './App.scss';
+import { useState } from 'react';
 
 function App() {
+	useState;
+
+	const itemSelected = (id) => {};
 	return (
 		<div className='App'>
 			<div>
