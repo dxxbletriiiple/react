@@ -2,11 +2,11 @@ import { createContext } from 'react';
 
 export const context = createContext({
 	selectedPerson: {
-		id: '',
-		name: '',
-		gender: '',
-		birthYear: '',
-		eyeColor: '',
+		id: '1',
+		name: 'Luke Skywalker',
+		gender: 'male',
+		birthYear: '19BBY',
+		eyeColor: 'blue',
 	},
 	onPersonSelected() {},
 });
