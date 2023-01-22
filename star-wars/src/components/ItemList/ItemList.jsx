@@ -13,7 +13,7 @@ export const ItemList = () => {
 
 	return (
 		<ul className='item-list list-group'>
-			{peopleList ? peopleList.map((i) => <View name={i.name} />) : <Spinner />}
+			{peopleList ? peopleList.map((el, i) => <View name={el.name} key={i} />) : <Spinner />}
 		</ul>
 	);
 };
