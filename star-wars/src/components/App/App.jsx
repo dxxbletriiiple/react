@@ -1,43 +1,17 @@
-import { useState } from 'react';
-import { context } from '../../context/context';
 import { Header } from '../Header/Header';
 import { RandomPlanet } from '../RandomPlanet/RandomPlanet';
-import { ItemList } from '../ItemList/ItemList';
-import { PersonDetails } from '../PersonDetails/PersonDetails';
+import { PeoplePage } from '../../pages/PeoplePage/PeoplePage';
 import './App.scss';
 
-const { Provider } = context;
-
 function App() {
-	const [selectedPerson, setSelectedPerson] = useState({
-		id: '1',
-		name: 'Luke Skywalker',
-		gender: 'male',
-		birthYear: '19BBY',
-		eyeColor: 'blue',
-	});
-
-	const onPersonSelected = (person) => {
-		console.dir(person);
-		setSelectedPerson(person);
-	};
 	return (
-		<Provider value={{ selectedPerson, onPersonSelected }}>
-			<div className='App'>
-				<div>
-					<Header />
-					<RandomPlanet />
-					<div className='row mb2'>
-						<div className='col-md-6'>
-							<ItemList />
-						</div>
-						<div className='col-md-6'>
-							<PersonDetails />
-						</div>
-					</div>
-				</div>
+		<div className='App'>
+			<div>
+				<Header />
+				<RandomPlanet />
+				<PeoplePage />
 			</div>
-		</Provider>
+		</div>
 	);
 }
 

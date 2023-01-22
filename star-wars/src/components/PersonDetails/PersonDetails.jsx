@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { context as data } from '../../context/context';
+import { peopleContext } from '../../contexts/contexts';
 import './PersonDetails.scss';
 
 export const PersonDetails = () => {
 	const {
 		selectedPerson: { id, name, gender, eyeColor, birthYear },
-	} = useContext(data);
+	} = useContext(peopleContext);
 	return (
 		<div className='person-details card'>
 			<img className='person-image' src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />

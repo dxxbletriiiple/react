@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { context } from '../../context/context';
+import { peopleContext } from '../../contexts/contexts';
 import SwapiSevice from '../../services/SwapiService';
 import { Spinner } from '../Spinner/Spinner';
 import './ItemList.scss';
@@ -20,7 +20,7 @@ export const ItemList = () => {
 };
 
 const View = (props) => {
-	const { onPersonSelected } = useContext(context);
+	const { onPersonSelected } = useContext(peopleContext);
 
 	return (
 		<li className='list-group-item' onClick={() => onPersonSelected(props)}>
