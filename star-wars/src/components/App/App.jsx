@@ -1,30 +1,36 @@
+import { useState } from 'react';
+import { context } from '../../context/context';
 import { Header } from '../Header/Header';
 import { RandomPlanet } from '../RandomPlanet/RandomPlanet';
 import { ItemList } from '../ItemList/ItemList';
 import { PersonDetails } from '../PersonDetails/PersonDetails';
 import './App.scss';
-import { useState } from 'react';
+
+const { Provider } = context;
 
 function App() {
-	useState;
+	const [selectedPerson, setSelectedPerson] = useState({});
 
-	const itemSelected = (id) => {};
+	const onPersonSelected = (person) => {
+		setSelectedPerson(person);
+	};
 	return (
-		<div className='App'>
-			<div>
-				<Header />
-				<RandomPlanet />
-
-				<div className='row mb2'>
-					<div className='col-md-6'>
-						<ItemList />
-					</div>
-					<div className='col-md-6'>
-						<PersonDetails />
+		<Provider value={{ selectedPerson, onPersonSelected }}>
+			<div className='App'>
+				<div>
+					<Header />
+					<RandomPlanet />
+					<div className='row mb2'>
+						<div className='col-md-6'>
+							<ItemList />
+						</div>
+						<div className='col-md-6'>
+							<PersonDetails />
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</Provider>
 	);
 }
 

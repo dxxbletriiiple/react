@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { context as data } from '../../context/context';
 import SwapiSevice from '../../services/SwapiService';
 import { Spinner } from '../Spinner/Spinner';
 import './ItemList.scss';
@@ -13,11 +14,19 @@ export const ItemList = () => {
 
 	return (
 		<ul className='item-list list-group'>
-			{peopleList ? peopleList.map((el, i) => <View name={el.name} key={i} />) : <Spinner />}
+			{peopleList ? peopleList.map((el, i) => <View {...el} key={i} />) : <Spinner />}
 		</ul>
 	);
 };
 
-const View = ({ name, id }) => {
-	return <li className='list-group-item'>{name}</li>;
+const View = (props) => {
+	const context = useContext(data);
+	const handleClick = () => {
+		context.onPersonSelected(props);
+	};
+	return (
+		<li className='list-group-item' onClick={handleClick}>
+			{props.name}
+		</li>
+	);
 };
