@@ -9,9 +9,16 @@ import './App.scss';
 const { Provider } = context;
 
 function App() {
-	const [selectedPerson, setSelectedPerson] = useState({});
+	const [selectedPerson, setSelectedPerson] = useState({
+		id: '1',
+		name: 'Luke Skywalker',
+		gender: 'male',
+		birthYear: '19BBY',
+		eyeColor: 'blue',
+	});
 
 	const onPersonSelected = (person) => {
+		console.dir(person);
 		setSelectedPerson(person);
 	};
 	return (
