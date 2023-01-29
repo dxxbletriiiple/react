@@ -1,10 +1,13 @@
-import Container from 'components/Container/Container';
+import { Container } from './components/Container';
 import './App.scss';
+import { TheHeader } from './components/TheHeader';
 
 function App() {
 	return (
 		<div className='App'>
-			<Container>1</Container>
+			<Container>
+				<TheHeader />
+			</Container>
 		</div>
 	);
 }
